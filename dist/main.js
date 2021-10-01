@@ -100,6 +100,26 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, style) {\
 
 /***/ }),
 
+/***/ "./src/DOM/DOM.js":
+/*!************************!*\
+  !*** ./src/DOM/DOM.js ***!
+  \************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst DOM = (() => {\n  const root = () => document.getElementById('root');\n  const form = () => document.getElementById('search-bar');\n  const input = () => document.getElementById('location');\n\n  return { root, form, input };\n})();\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DOM);\n\n\n//# sourceURL=webpack://webpack-demo/./src/DOM/DOM.js?");
+
+/***/ }),
+
+/***/ "./src/DOM/index.js":
+/*!**************************!*\
+  !*** ./src/DOM/index.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _DOM__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DOM */ \"./src/DOM/DOM.js\");\n\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_DOM__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n\n\n//# sourceURL=webpack://webpack-demo/./src/DOM/index.js?");
+
+/***/ }),
+
 /***/ "./src/components/Form/Form.js":
 /*!*************************************!*\
   !*** ./src/components/Form/Form.js ***!
@@ -120,13 +140,33 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/components/Header/Header.js":
+/*!*****************************************!*\
+  !*** ./src/components/Header/Header.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Form */ \"./src/components/Form/index.js\");\n\n\nconst Header = () => `\n  <header id=\"header\">\n    ${(0,_Form__WEBPACK_IMPORTED_MODULE_0__[\"default\"])()}\n    <ul>\n      <li><a href=\"/places\">Places</a></li>\n      <li><a href=\"/about\">About</a></li>\n      <li><a href=\"https://github.com/llfalcao\" target=\"blank\">GitHub</a></li>\n    </ul>\n  </header>\n`;\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);\n\n\n//# sourceURL=webpack://webpack-demo/./src/components/Header/Header.js?");
+
+/***/ }),
+
+/***/ "./src/components/Header/index.js":
+/*!****************************************!*\
+  !*** ./src/components/Header/index.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Header */ \"./src/components/Header/Header.js\");\n\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_Header__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n\n\n//# sourceURL=webpack://webpack-demo/./src/components/Header/index.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/styles.scss */ \"./src/styles/styles.scss\");\n/* harmony import */ var _components_Form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Form */ \"./src/components/Form/index.js\");\n\n\n\nfunction processJSON(data) {\n  const description = data.weather[0].description.substring(0, 1).toUpperCase()\n    + data.weather[0].description.substring(1);\n\n  const weather = {\n    city: data.name,\n    main: data.weather[0].main,\n    description,\n    wind: data.wind,\n  };\n\n  return weather;\n}\n\nasync function getWeather(location) {\n  try {\n    const url = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=d13e276e40e6955fbc29f1ef1bcd9857`;\n    const response = await fetch(url, { mode: 'cors' });\n    const data = await response.json();\n    processJSON(data);\n  } catch (e) {\n    console.log(e);\n  }\n}\n\nconst root = document.getElementById('root');\nroot.insertAdjacentHTML('beforeend', (0,_components_Form__WEBPACK_IMPORTED_MODULE_1__[\"default\"])());\n\nconst form = document.getElementById('search-bar');\nconst input = document.getElementById('location');\n\nform.addEventListener('submit', (e) => {\n  e.preventDefault();\n  const location = input.value;\n\n  if (location === '' || location === ' ') {\n    return;\n  }\n\n  getWeather(location);\n});\n\n\n//# sourceURL=webpack://webpack-demo/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/styles.scss */ \"./src/styles/styles.scss\");\n/* harmony import */ var _DOM__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DOM */ \"./src/DOM/index.js\");\n/* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Header */ \"./src/components/Header/index.js\");\n\n\n\n\nfunction displayError() {\n  const msg = document.createElement('span');\n  msg.id = 'search-error';\n  msg.textContent = 'Something went wrong. Please try again.';\n\n  _DOM__WEBPACK_IMPORTED_MODULE_1__[\"default\"].form().appendChild(msg);\n}\n\nfunction processJSON(data) {\n  const description = data.weather[0].description.substring(0, 1).toUpperCase()\n    + data.weather[0].description.substring(1);\n\n  const weather = {\n    city: data.name,\n    main: data.weather[0].main,\n    description,\n    wind: data.wind,\n  };\n\n  return weather;\n}\n\nasync function getWeather(location) {\n  try {\n    const url = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=d13e276e40e6955fbc29f1ef1bcd9857`;\n    const response = await fetch(url, { mode: 'cors' });\n    const data = await response.json();\n    const weather = processJSON(data);\n    console.log(weather);\n  } catch (e) {\n    displayError();\n  }\n}\n\nconst root = _DOM__WEBPACK_IMPORTED_MODULE_1__[\"default\"].root();\nroot.insertAdjacentHTML('beforeend', (0,_components_Header__WEBPACK_IMPORTED_MODULE_2__[\"default\"])());\n\nconst form = _DOM__WEBPACK_IMPORTED_MODULE_1__[\"default\"].form();\nconst input = _DOM__WEBPACK_IMPORTED_MODULE_1__[\"default\"].input();\n\nform.addEventListener('submit', (e) => {\n  e.preventDefault();\n  const location = input.value;\n\n  if (location === '' || location === ' ') {\n    return;\n  }\n\n  getWeather(location);\n});\n\n\n//# sourceURL=webpack://webpack-demo/./src/index.js?");
 
 /***/ })
 
