@@ -1,5 +1,5 @@
 const Form = () => `
-  <form id="search-bar">
+  <form id="search-bar" class="row center">
     <input type="text" id="location" placeholder="Search" />
     <button type="submit" id="btn-submit">
       <svg

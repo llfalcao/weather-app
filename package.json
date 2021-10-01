@@ -10,7 +10,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "css-loader": "^6.2.0",
     "eslint": "^7.32.0",
@@ -22,5 +22,8 @@
     "webpack": "^5.52.1",
     "webpack-cli": "^4.8.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "prettier": "^2.4.1",
+    "prettier-eslint": "^13.0.0"
+  }
 }
