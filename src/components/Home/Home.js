@@ -1,5 +1,5 @@
 const Home = `
-  <div id="home" class="home__section-one col center">
+  <section id="home" class="col center">
     <h1>WeatherWiz</h1>
 
     <form id="search-bar" class="row center">
@@ -22,7 +22,7 @@ const Home = `
         </svg>
       </button>
     </form>
-  </div>
+  </section>
 `;
 
 export default Home;

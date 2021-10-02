@@ -1,6 +1,6 @@
 const Header = `
   <header id="header">
-    <nav class="nav row">
+    <nav class="header__nav row">
       <a href="#places">Places</a>
       <a href="https://github.com/llfalcao/weather-app" target="_blank">About</a>
       <a href="https://github.com/llfalcao" target="_blank">GitHub</a>

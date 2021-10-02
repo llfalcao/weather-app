@@ -4,22 +4,22 @@ const WeatherInfo = (data, unit) => {
   const tempUnit = unit ? 'F' : 'C';
 
   return `
-    <section id="results" class="home__section-two row center">
-      <div class="weather-main">
-        <div class="weather--info col center">
+    <section id="results" class="row center">
+      <div class="results__main">
+        <div class="results__info col center">
           <p>${data.city}, ${data.country}</p>
           <div class="row">
-            <span class="weather--icon row center">
+            <span class="results__icon results__icon--weather row center">
               <img src="${icon}" />
             </span>
             <span>${data.main.temperature}</span>
             <span class="degree">º</span>
             <span>${tempUnit}</span>
           </div>
-          <span class="description">${data.weather.description}</span>
+          <span class="results__description">${data.weather.description}</span>
         </div>
 
-        <div class="weather--minmax info-block row center">
+        <div class="results__small-block results__small-block--minmax row center">
           <div class="col center">
             <div class="row center">
               <span>${data.main.temp_min}</span>
@@ -39,11 +39,11 @@ const WeatherInfo = (data, unit) => {
           </div>
         </div>
 
-        <span class="weather--feelslike info-block row center"
+        <span class=" results__small-block results__small-block--feelslike row center"
           >Feels like ${data.main.feels_like}<span class="degree">º</span>${tempUnit}</span
         >
 
-        <div class="weather--humidity info-block col center">
+        <div class="results__small-block results__small-block--humidity col center">
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +61,7 @@ const WeatherInfo = (data, unit) => {
           <span>Humidity</span>
         </div>
 
-        <div class="weather--wind info-block col center">
+        <div class="results__small-block results__small-block--wind col center">
           <span>
             <svg
               class="wind-icon"
