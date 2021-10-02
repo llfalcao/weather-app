@@ -1,6 +1,7 @@
 import './styles/styles.scss';
 import DOM from './DOM';
 import Header from './components/Header';
+import Home from './components/Home';
 
 function displayError() {
   const msg = document.createElement('span');
@@ -38,6 +39,7 @@ async function getWeather(location) {
 
 const root = DOM.root();
 root.insertAdjacentHTML('beforeend', Header());
+root.insertAdjacentHTML('beforeend', Home());
 
 const form = DOM.form();
 const input = DOM.input();
