@@ -1,6 +1,6 @@
-#home {
+// Section 1
+.home__section-one {
   min-height: 350px;
-  overflow: auto;
   height: 100vh;
   background: url('../assets/bg/home-bg-1360.jpg') bottom / cover no-repeat;
 }
@@ -12,8 +12,8 @@ h1 {
 }
 
 #search-bar {
+  position: relative;
   width: 40vw;
-  overflow: hidden;
   margin-bottom: 6vw;
 }
 
@@ -34,6 +34,11 @@ h1 {
   padding: 0 1.2vw 0.15vw 1vw;
 }
 
+#search-error {
+  position: absolute;
+  bottom: -3.5vw;
+}
+
 // Search Icon
 .feather-search {
   position: relative;
@@ -42,18 +47,190 @@ h1 {
   filter: invert(1);
 }
 
+// Section 2
+.home__section-two {
+  position: relative;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: url('https://images.unsplash.com/photo-1519046904884-53103b34b206?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1360&q=80')
+    center / cover no-repeat;
+  overflow: hidden;
+  display: none;
+}
+
+// Overlay
+.home__section-two::after {
+  content: '';
+  position: absolute;
+  width: 105%;
+  height: 105%;
+  background-color: rgba(0, 0, 0, 0.2);
+  top: -2.5%;
+  left: -2.5%;
+}
+
+// Weather Container
+.weather-main {
+  width: 70vw;
+  height: 100%;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: repeat(2, 20vw);
+  grid-template-rows: repeat(3, min-content);
+  grid-template-areas: 'a a' 'b c' 'd e';
+  gap: 1vw;
+  z-index: 1;
+}
+
+// City, Country, Icon, and Temperature
+.weather--info {
+  width: 100%;
+  height: 100%;
+  grid-area: a;
+  color: $text-dark;
+  border-radius: 1vw 1vw 0 0;
+  background-color: $bg-dark;
+  box-shadow: $shadow;
+  opacity: 0.84;
+  transition: opacity 0.3s;
+  cursor: default;
+
+  & p {
+    font-size: 4vw;
+  }
+
+  & div span {
+    font-size: 8vw;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.weather--icon {
+  & img {
+    height: 12vw;
+  }
+}
+
+// Weather description
+.description {
+  font-size: 1.8vw;
+  font-weight: 500;
+  max-width: 25vw;
+  text-align: center;
+  margin-bottom: 1vw;
+}
+
+// Minimum and Maximum Temperature
+.weather--minmax {
+  grid-area: b;
+  gap: 1vw;
+  padding: 0.5vw 0;
+
+  & span {
+    font-size: 1.5vw;
+  }
+
+  & div + span {
+    font-size: 1.2vw;
+  }
+}
+
+// Hyphen separating minimum and maximum temps
+.separator {
+  align-self: flex-start;
+}
+
+// What the temperature feels like
+.weather--feelslike {
+  grid-area: c;
+  font-size: 1.5vw;
+}
+
+// Humidity Percentage
+.weather--humidity {
+  grid-area: d;
+  padding: 0.5vw 0;
+
+  & span {
+    font-size: 1.5vw;
+  }
+
+  & span:last-child {
+    font-size: 1.2vw;
+  }
+}
+
+// Humidity Icon
+.feather-droplet {
+  fill: #06213a;
+  stroke: none;
+  width: 1.1vw;
+}
+
+// Wind Speed and Direction
+.weather--wind {
+  grid-area: e;
+  padding: 0.5vw 0;
+
+  & span {
+    font-size: 1.5vw;
+  }
+
+  & span:last-child {
+    font-size: 1.2vw;
+  }
+}
+
+.wind-icon {
+  width: 1.3vw;
+  aspect-ratio: 1;
+  fill: #06213a;
+  vertical-align: top;
+  margin-top: 0.4vw;
+}
+
+// Style for extra info
+.info-block {
+  width: 100%;
+  height: 100%;
+  opacity: 0.84;
+  background: rgb(225, 225, 225);
+  border-radius: 0.2vw;
+  box-shadow: 0 0.1vw 0.5vw rgba(0, 0, 0, 0.5), 0 0.1vw 0.1vw rgba(0, 0, 0, 0.5);
+  color: $text-light;
+  transition: opacity $quick;
+  cursor: default;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+// Show º character on a different style
+.degree {
+  font-family: $font-system;
+  font-size: 1.8vw;
+}
+
 @media (min-width: 1500px) {
-  #home {
+  .home__section-one {
     background: url('../assets/bg/home-bg-1920.jpg') bottom / cover no-repeat;
   }
 }
 @media (min-width: 2200px) {
-  #home {
+  .home__section-one {
     background: url('../assets/bg/home-bg-2560.jpg') bottom / cover no-repeat;
   }
 }
 @media (min-width: 2700px) {
-  #home {
+  .home__section-one {
     background: url('../assets/bg/home-bg-3840.jpg') bottom / cover no-repeat;
   }
 }

@@ -1,5 +1,5 @@
-const Header = () => `
-  <header id="header">    
+const Header = `
+  <header id="header">
     <nav class="nav row">
       <a href="#places">Places</a>
       <a href="https://github.com/llfalcao/weather-app" target="_blank">About</a>

@@ -1,14 +1,16 @@
 const DOM = (() => {
   const root = () => document.getElementById('root');
   const form = () => document.getElementById('search-bar');
+  const searchErrorMsg = () => document.getElementById('search-error');
   const input = () => document.getElementById('location');
-  const home = () => document.getElementById('home');
+  const results = () => document.getElementById('results');
 
   return {
     form,
-    home,
     input,
+    results,
     root,
+    searchErrorMsg,
   };
 })();
 
