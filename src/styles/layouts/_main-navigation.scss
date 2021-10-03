@@ -1,4 +1,89 @@
 #root {
+  position: relative;
   margin: auto;
   background: url('../assets/bg/results-default.jpg') center / cover no-repeat;
+}
+
+#info {
+  position: absolute;
+  bottom: 1vw;
+  right: 1vw;
+}
+
+#info__btn {
+  position: absolute;
+  bottom: 1vw;
+  right: 1vw;
+  width: 3vw;
+  aspect-ratio: 1;
+  border-radius: 100%;
+  background-color: $dark;
+  box-shadow: $shadow;
+  transition: opacity $quick;
+  z-index: 4;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.feather-info {
+  width: 1.5vw;
+  stroke: $light;
+}
+
+.info__project {
+  position: absolute;
+  background-color: #fff;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-radius: 0.25vw;
+  box-shadow: $shadow;
+  z-index: 3;
+  transition: $quick ease-in-out;
+
+  & ul {
+    margin-bottom: 3.5vw;
+    overflow: auto;
+    scrollbar-width: thin;
+  }
+
+  & li {
+    padding: 1vw 0;
+  }
+
+  & li:first-child {
+    border-bottom: 0.1vw solid gray;
+  }
+
+  & p:not(.info__title),
+  a {
+    font-size: 1vw;
+    font-weight: 500;
+  }
+
+  & a {
+    text-decoration: underline;
+  }
+}
+
+.info__title {
+  font-size: 1.2vw;
+  font-weight: 800;
+}
+
+// Modifier for when the user clicks the info button
+.info__project--visible {
+  width: 20vw;
+  height: 30vw;
+  padding: 1vw;
+}
+
+// Unsplash credits
+.info__credits {
+  & p {
+    margin-bottom: 1vw;
+  }
 }

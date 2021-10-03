@@ -7,7 +7,7 @@
 }
 
 h1 {
-  color: #06213a;
+  color: $darkblue;
   margin-bottom: 3vw;
   cursor: default;
 }
@@ -31,7 +31,7 @@ h1 {
 #btn-submit {
   height: 3vw;
   border-radius: 0 2vw 2vw 0;
-  background-color: #06213a;
+  background-color: $darkblue;
   padding: 0 1.2vw 0.15vw 1vw;
 }
 
@@ -192,7 +192,7 @@ h1 {
 
 // Humidity Icon
 .feather-droplet {
-  fill: #06213a;
+  fill: $darkblue;
   stroke: none;
   width: 1.1vw;
 }
@@ -215,7 +215,7 @@ h1 {
 .wind-icon {
   width: 1.3vw;
   aspect-ratio: 1;
-  fill: #06213a;
+  fill: $darkblue;
   vertical-align: top;
   margin-top: 0.4vw;
 }

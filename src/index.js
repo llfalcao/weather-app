@@ -30,14 +30,30 @@ function handleWeatherCode(code) {
   }
 }
 
+function loadCredits(data) {
+  const author = data.results[0].user.name;
+  const link = data.results[0].links.html;
+  let description = data.results[0].alt_description;
+  description = description.substring(0, 1).toUpperCase() + description.substring(1);
+  const content = `
+    <p>
+      "${description}" by
+      <a href="${link}" target="_blank">${author}</a>
+      on <a href="https://unsplash.com" target="_blank">Unsplash</a>
+    </p>
+  `;
+  DOM.infoCredits().insertAdjacentHTML('beforeend', content);
+}
+
 // Load photo relevant to the current weather as background
 async function loadBackground(code) {
   const query = handleWeatherCode(code);
   const url = `https://api.unsplash.com/search/photos?query=${query}&per_page=1&collections="893395, 1445644, 10458672, 1738043"&client_id=TInbzLsY_YEcrMggPbvEUpiY8lmXlQvAdlc__BUEi1Y`;
   const response = await fetch(url, { mode: 'cors' });
   const data = await response.json();
-  const imageURL = await data.results[0].urls.regular;
+  const imageURL = data.results[0].urls.regular;
   DOM.results().style.background = `url('${imageURL}') center / cover no-repeat`;
+  loadCredits(data);
 }
 
 // Display weather API related errors
@@ -112,7 +128,6 @@ async function getWeather(location) {
       behavior: 'smooth',
     });
   } catch (e) {
-    console.log(e);
     displayError();
   }
 }
@@ -133,4 +148,15 @@ form.addEventListener('submit', (e) => {
   }
 
   getWeather(location);
+});
+
+// Show photo credits
+const infoBtn = DOM.infoBtn();
+infoBtn.addEventListener('click', () => {
+  const info = DOM.info();
+  if (info.classList.contains('info__project--visible')) {
+    info.classList.remove('info__project--visible');
+    return;
+  }
+  info.classList.add('info__project--visible');
 });
