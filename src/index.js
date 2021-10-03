@@ -118,7 +118,7 @@ function processJSON(data) {
 // Consume OpenWeatherMap's API
 async function getWeather(location) {
   try {
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=d13e276e40e6955fbc29f1ef1bcd9857`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=d13e276e40e6955fbc29f1ef1bcd9857`;
     const response = await fetch(url);
     const data = await response.json();
     const weather = processJSON(data);
