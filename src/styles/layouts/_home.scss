@@ -98,6 +98,7 @@ h1 {
   opacity: 0.84;
   transition: opacity 0.3s;
   cursor: default;
+  position: relative;
 
   & p {
     font-size: 4vw;
@@ -122,6 +123,33 @@ h1 {
   & img {
     width: 100%;
   }
+}
+
+// Button for switching temperature units
+#results__switch-unit {
+  position: absolute;
+  bottom: 1vw;
+  right: 1vw;
+  background-color: rgba(79, 79, 79, 0.5);
+  gap: 1vw;
+  opacity: 0.8;
+  padding: 0.2vw 1vw;
+  border-radius: 0.5vw;
+
+  & span {
+    color: $light;
+    font-size: 2.5vw;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+// Temperature Unit Switch Icon
+.feather-switch {
+  width: 2vw;
+  stroke: $light;
 }
 
 // Style for extra info
@@ -174,6 +202,14 @@ h1 {
 .results__small-block--feelslike {
   grid-area: c;
   font-size: 1.5vw;
+
+  & span:first-child {
+    margin-right: 0.3vw;
+  }
+
+  & span {
+    font-size: 1.5vw;
+  }
 }
 
 // Humidity Percentage

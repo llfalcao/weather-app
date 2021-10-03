@@ -1,12 +1,10 @@
 const WeatherInfo = (data, unit) => {
   const icon = `http://openweathermap.org/img/wn/${data.weather.icon}@4x.png`;
-  const tempUnit = unit ? 'F' : 'C';
+  const mainUnit = unit ? 'F' : 'C';
+  const alternateUnit = unit ? 'C' : 'F';
 
   return `
-    <section
-      id="results"
-      class="row center"
-    >
+    <section id="results" class="row center">
       <div class="results__main">
         <div class="results__info col center">
           <p>${data.city}, ${data.country}</p>
@@ -14,36 +12,56 @@ const WeatherInfo = (data, unit) => {
             <span class="results__icon results__icon--weather row center">
               <img src="${icon}" />
             </span>
-            <span>${data.main.temperature}</span>
+            <span class="temperature">${data.main.temperature}</span>
             <span class="degree">º</span>
-            <span>${tempUnit}</span>
+            <span class="unit">${mainUnit}</span>
           </div>
           <span class="results__description">${data.weather.description}</span>
+          <button id="results__switch-unit" class="row center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-switch"
+            >
+              <polyline points="23 4 23 10 17 10" />
+              <polyline points="1 20 1 14 7 14" />
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
+            </svg>
+            <span>${alternateUnit}</span>
+          </button>
         </div>
 
         <div class="results__small-block results__small-block--minmax row center">
           <div class="col center">
             <div class="row center">
-              <span>${data.main.temp_min}</span>
+              <span class="temperature">${data.main.temp_min}</span>
               <span class="degree">º</span>
-              <span>${tempUnit}</span>
+              <span class="unit">${mainUnit}</span>
             </div>
             <span>Min</span>
           </div>
           <span class="separator">-</span>
           <div class="col center">
             <div class="row center">
-              <span>${data.main.temp_max}</span>
+              <span class="temperature">${data.main.temp_max}</span>
               <span class="degree">º</span>
-              <span>${tempUnit}</span>
+              <span class="unit">${mainUnit}</span>
             </div>
             <span>Max</span>
           </div>
         </div>
 
-        <span class=" results__small-block results__small-block--feelslike row center"
-          >Feels like ${data.main.feels_like}<span class="degree">º</span>${tempUnit}</span
-        >
+        <div class="results__small-block results__small-block--feelslike row center">
+          <span>Feels like</span>
+          <span class="temperature">${data.main.feels_like}</span>
+          <span class="degree">º</span>
+          <span class="unit">${mainUnit} </span>
+        </div>
 
         <div class="results__small-block results__small-block--humidity col center">
           <span>

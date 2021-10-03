@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import WeatherInfo from './components/WeatherInfo';
 
-const useFarenheit = false;
+let useFarenheit = false;
 
 // Convert weather codes into search terms for the Unsplash API
 function handleWeatherCode(code) {
@@ -30,6 +30,7 @@ function handleWeatherCode(code) {
   }
 }
 
+// Display photo credits
 function loadCredits(data) {
   const author = data.results[0].user.name;
   const link = data.results[0].links.html;
@@ -45,7 +46,7 @@ function loadCredits(data) {
   DOM.infoCredits().insertAdjacentHTML('beforeend', content);
 }
 
-// Load photo relevant to the current weather as background
+// Consume Unsplash's API for relevant weather photos
 async function loadBackground(code) {
   const query = handleWeatherCode(code);
   const url = `https://api.unsplash.com/search/photos?query=${query}&per_page=1&collections="893395, 1445644, 10458672, 1738043"&client_id=TInbzLsY_YEcrMggPbvEUpiY8lmXlQvAdlc__BUEi1Y`;
@@ -56,17 +57,12 @@ async function loadBackground(code) {
   loadCredits(data);
 }
 
-// Display weather API related errors
+// Display errors related to the OpenWeatherMap API
 function displayError() {
   const msg = document.createElement('span');
   msg.id = 'search-error';
   msg.textContent = 'Something went wrong. Please try again.';
   DOM.form().appendChild(msg);
-}
-
-// Load search results
-function displayNew(content) {
-  DOM.root().insertAdjacentHTML('beforeend', content);
 }
 
 // Remove old results before displaying the new ones
@@ -75,17 +71,24 @@ function clearOld() {
   if (DOM.results()) DOM.results().remove();
 }
 
-function convertTemps(K) {
-  if (!useFarenheit) return Math.round(K - 273.15); // Celsius
-  return Math.round((K - 273.15) * 1.8 + 32); // Farenheit
+// Converts temperature from the desired unit
+function convertTemps(value, unit) {
+  if (unit === 'K') {
+    // Celsius
+    if (!useFarenheit) return Math.round(value - 273.15);
+    // Farenheit
+    return Math.round((value - 273.15) * 1.8 + 32);
+  }
+  if (unit === 'F') return Math.round(((value - 32) * 5) / 9);
+  return Math.round(value * 1.8 + 32);
 }
 
 // Filter relevant fields
 function processJSON(data) {
-  const temperature = convertTemps(data.main.temp);
-  const feelsLike = convertTemps(data.main.feels_like);
-  const tempMin = convertTemps(data.main.temp_min);
-  const tempMax = convertTemps(data.main.temp_max);
+  const temperature = convertTemps(data.main.temp, 'K');
+  const feelsLike = convertTemps(data.main.feels_like, 'K');
+  const tempMin = convertTemps(data.main.temp_min, 'K');
+  const tempMax = convertTemps(data.main.temp_max, 'K');
 
   let { description } = data.weather[0];
   description = description.substring(0, 1).toUpperCase() + description.substring(1);
@@ -121,8 +124,8 @@ async function getWeather(location) {
     const weather = processJSON(data);
     const content = WeatherInfo(weather, useFarenheit);
     clearOld();
-    displayNew(content);
-    await loadBackground(weather.weather.id);
+    DOM.root().insertAdjacentHTML('beforeend', content);
+    loadBackground(weather.weather.id);
     window.scrollTo({
       top: DOM.results().offsetTop,
       behavior: 'smooth',
@@ -132,26 +135,56 @@ async function getWeather(location) {
   }
 }
 
+let unitName;
+if (typeof localStorage.weatherwiz !== 'undefined') {
+  const settings = JSON.parse(localStorage.weatherwiz);
+  useFarenheit = settings.farenheit;
+  if (useFarenheit) unitName = 'F';
+  else unitName = 'C';
+}
+
+function toggleUnitName() {
+  if (unitName === 'F') unitName = 'C';
+  else unitName = 'F';
+}
+
+// Switch temperature units
+function addUnitSwitchListener() {
+  const btn = DOM.unitSwitchBtn();
+  if (btn === null) return;
+
+  btn.addEventListener('click', () => {
+    useFarenheit = !useFarenheit;
+    localStorage.weatherwiz = JSON.stringify({ farenheit: useFarenheit });
+    const temperatures = DOM.temperatures();
+    const converted = [];
+    for (let i = 0; i < temperatures.length; i += 1) {
+      converted.push(convertTemps(temperatures[i].textContent, unitName));
+    }
+    toggleUnitName();
+    DOM.updateTemperatures(converted);
+    DOM.switchUnitText(useFarenheit);
+  });
+}
+
 const root = DOM.root();
 root.insertAdjacentHTML('beforeend', Header);
 root.insertAdjacentHTML('beforeend', Home);
 
 const form = DOM.form();
 const input = DOM.input();
-
+// Handle Search
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   const location = input.value;
-
   if (location === '' || location === ' ') {
     return;
   }
-
-  getWeather(location);
+  getWeather(location).then(() => addUnitSwitchListener());
 });
 
-// Show photo credits
 const infoBtn = DOM.infoBtn();
+// Display photo credits
 infoBtn.addEventListener('click', () => {
   const info = DOM.info();
   if (info.classList.contains('info__project--visible')) {
