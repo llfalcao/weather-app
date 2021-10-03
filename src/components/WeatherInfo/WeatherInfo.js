@@ -1,5 +1,5 @@
 const WeatherInfo = (data, unit) => {
-  const icon = `http://openweathermap.org/img/wn/${data.weather.icon}@4x.png`;
+  const icon = `https://openweathermap.org/img/wn/${data.weather.icon}@4x.png`;
   const mainUnit = unit ? 'F' : 'C';
   const alternateUnit = unit ? 'C' : 'F';
 
