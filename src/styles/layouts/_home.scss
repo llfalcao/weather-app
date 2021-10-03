@@ -2,7 +2,8 @@
 #home {
   min-height: 350px;
   height: 100vh;
-  background: url('../assets/bg/home-bg-1360.jpg') bottom / cover no-repeat;
+  background: url('../assets/bg/home-bg-1360.jpg') fixed bottom / cover
+    no-repeat;
 }
 
 h1 {
@@ -55,8 +56,6 @@ h1 {
   align-items: center;
   overflow: hidden;
   animation: fade-in $slow ease-in-out;
-  background: url('https://images.unsplash.com/photo-1530908295418-a12e326966ba?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80')
-    center / cover no-repeat;
 }
 
 // Overlay
