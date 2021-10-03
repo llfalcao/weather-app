@@ -1,10 +1,12 @@
 const WeatherInfo = (data, unit) => {
   const icon = `http://openweathermap.org/img/wn/${data.weather.icon}@4x.png`;
-
   const tempUnit = unit ? 'F' : 'C';
 
   return `
-    <section id="results" class="row center">
+    <section
+      id="results"
+      class="row center"
+    >
       <div class="results__main">
         <div class="results__info col center">
           <p>${data.city}, ${data.country}</p>
