@@ -50,7 +50,7 @@ function loadCredits(data) {
 async function loadBackground(code) {
   const query = handleWeatherCode(code);
   const url = `https://api.unsplash.com/search/photos?query=${query}&per_page=1&collections="893395, 1445644, 10458672, 1738043"&client_id=TInbzLsY_YEcrMggPbvEUpiY8lmXlQvAdlc__BUEi1Y`;
-  const response = await fetch(url, { mode: 'cors' });
+  const response = await fetch(url);
   const data = await response.json();
   const imageURL = data.results[0].urls.regular;
   DOM.results().style.background = `url('${imageURL}') center / cover no-repeat`;
@@ -119,7 +119,7 @@ function processJSON(data) {
 async function getWeather(location) {
   try {
     const url = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=d13e276e40e6955fbc29f1ef1bcd9857`;
-    const response = await fetch(url, { mode: 'cors' });
+    const response = await fetch(url);
     const data = await response.json();
     const weather = processJSON(data);
     const content = WeatherInfo(weather, useFarenheit);
