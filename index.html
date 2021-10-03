@@ -15,6 +15,49 @@
     <script defer src="main.js"></script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div id="info">
+        <button id="info__btn" class="row center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-info"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="16" x2="12" y2="12" />
+            <line x1="12" y1="8" x2="12.01" y2="8" />
+          </svg>
+        </button>
+        <div class="info__project col">
+          <ul>
+            <li>
+              <p class="info__title">Project:</p>
+              <p>
+                <a href="https://github.com/llfalcao/weather-app"
+                  >https://github.com/llfalcao/weather-app</a
+                >
+              </p>
+            </li>
+            <li class="info__credits">
+              <p class="info__title">Credits:</p>
+              <p>
+                "White clouds during daytime" by
+                <a
+                  href="https://unsplash.com/photos/FIKD9t5_5zQ"
+                  target="_blank"
+                  >Dominik Schröder</a
+                >
+                on <a href="https://unsplash.com" target="_blank">Unsplash</a>
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
